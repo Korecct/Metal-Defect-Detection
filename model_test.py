@@ -83,8 +83,12 @@ def batch_process_images(model, class_names, device, input_dir='input_images', o
                             font_scale, text_color, thickness, cv2.LINE_AA)
 
             # Rename the output image to include classification type and confidence percentage
-            confidence_str = f"{confidence_percentage:.2f}".replace('.', '_')
-            new_image_name = f"{predicted_class}_{confidence_str}percent.jpg"
+
+            confidence_str = f"{int(confidence_percentage)}"
+
+            # Construct the new image name
+            new_image_name = f"{confidence_str}%_{predicted_class}.jpg"
+
             output_image_path = os.path.join(output_dir, new_image_name)
 
             # Save the annotated image to output directory
